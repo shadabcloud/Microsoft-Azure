@@ -1,0 +1,13 @@
+# Declaring Variables.
+
+$storageAccountName = "seedstorageshell"
+$skuName = "Standard_LRS"
+$location = "australiasoutheast"
+$resourceGroup = "RG-4"
+
+# Create the storage account.
+
+$storageAccount = New-AzureRmStorageAccount -ResourceGroupName $resourceGroup `
+  -Name $storageAccountName `
+  -Location $location `
+  -SkuName $skuName
