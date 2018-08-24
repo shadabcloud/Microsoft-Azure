@@ -5,9 +5,6 @@ $cert = New-SelfSignedCertificate -Type Custom -KeySpec Signature `
 -HashAlgorithm sha256 -KeyLength 2048 `
 -CertStoreLocation "Cert:\CurrentUser\My" -KeyUsageProperty Sign -KeyUsage CertSign
 
-
-
-
 # Client Certificate.
 
 New-SelfSignedCertificate -Type Custom -DnsName P2SChildCert -KeySpec Signature `
