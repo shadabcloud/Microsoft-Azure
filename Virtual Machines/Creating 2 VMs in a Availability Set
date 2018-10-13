@@ -1,0 +1,26 @@
+New-AzureRmResourceGroup -Name RG-1 -Location 'South India'
+
+New-AzureRmAvailabilitySet `
+   -Location "South India" `
+   -Name "AvSet-1" `
+   -ResourceGroupName "RG-1" `
+   -Sku aligned `
+   -PlatformFaultDomainCount 2 `
+   -PlatformUpdateDomainCount 2
+
+   $cred = Get-Credential
+
+   for ($i=1; $i -le 2; $i++)
+{
+    New-AzureRmVm `
+        -ResourceGroupName "RG-1" `
+        -Name "AvSet-VM$i" `
+        -Location 'South India' `
+        -Size "Standard_D1_v2" `
+        -VirtualNetworkName "Vnet-IndSouth" `
+        -SubnetName "Subnet-1" `
+        -SecurityGroupName "myNetworkSecurityGroup" `
+        -PublicIpAddressName "myPublicIpAddress$i" `
+        -AvailabilitySetName "AvSet-1" `
+        -Credential $cred
+} 
