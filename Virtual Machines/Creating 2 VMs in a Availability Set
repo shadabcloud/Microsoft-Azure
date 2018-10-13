@@ -24,3 +24,16 @@ New-AzureRmAvailabilitySet `
         -AvailabilitySetName "AvSet-1" `
         -Credential $cred
 } 
+
+
+# Installing IIS for Load Balancer
+
+Set-AzureRmVMExtension `
+  -ResourceGroupName RG-1 `
+  -ExtensionName IIS `
+  -VMName AvSet-VM2 `
+  -Publisher Microsoft.Compute `
+  -ExtensionType CustomScriptExtension `
+  -TypeHandlerVersion 1.4 `
+  -SettingString '{"commandToExecute":"powershell Add-WindowsFeature Web-Server; powershell Add-Content -Path \"C:\\inetpub\\wwwroot\\Default.htm\" -Value $($env:computername)"}' `
+  -Location 'South India'
