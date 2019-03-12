@@ -13,7 +13,7 @@ Install-ADDSForest
  -DatabasePath "C:\Windows\NTDS" `
  -DomainMode "WinThreshold" `
  -DomainName "seed.com" `
- -SafeModeAdministratorPassword (ConvertTo-SecureString "Ch@nge!19" -AsPlainText -Force) `
+ -SafeModeAdministratorPassword (ConvertTo-SecureString "" -AsPlainText -Force) `
  -DomainNetbiosName "SEED" `
  -ForestMode "WinThreshold" `
  -InstallDns:$true `
